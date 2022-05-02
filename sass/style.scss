@@ -1,0 +1,399 @@
+$colorHeader: rgb(27, 27, 27);
+$sombraBox: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+$transicion: all .3s;
+$colorText: rgb(21, 21, 21);
+$colorH4: rgb(145, 145, 145);
+$title: rgba(255, 255, 255, 0.349);
+$colorHover: rgb(93, 42, 93);
+$shadowSkills: rgba(95, 95, 95, 0.1);
+
+$breakpoints: (
+    fold: 320px,
+    sm : 375px,
+    md : 681px,
+    lg : 880px,
+    xl : 1015px,
+    xxl : 1175px
+);
+
+
+@mixin media-up($breakpoint) {
+    @media screen and (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(7,1fr);
+    overflow: hidden;
+    box-shadow: $sombraBox;
+    a{
+        color: $colorHeader;
+        text-decoration: none;
+    }
+    .logo {
+        grid-area: 1/1/2/3;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        @include media-up(xl){
+            grid-area: 1/1/2/2;
+            justify-content: start;
+        }
+        @include media-up(fold){
+            grid-area: 1/1/2/-1;
+            justify-content: center;
+            
+        }
+        img{
+            width: 100px;
+            @include media-up(md){
+                width: 80px;
+            }
+            @include media-up(sm){
+                width: 60px;
+            }
+        }
+        span {
+            @include media-up(xxl){
+                font-size: 12px;
+            }
+            @include media-up(xl){
+                display: none;
+            }
+        }
+    }
+    .menu {
+        grid-area: 1/3/2/11;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include media-up(xl){
+            grid-area: 1/2/2/12;
+            justify-content: space-evenly;
+            font-size: 14px;
+        }
+        @include media-up(fold){
+            grid-area: 2/1/3/-1;
+        }
+        
+        li {
+            margin-left: 4%;
+            list-style: none;
+            @include media-up(xxl){
+                margin-left: 2%;
+            }
+            @include media-up(xl){
+                margin-left: 0;
+            }
+            
+        }
+        a{
+            padding: 5px;
+            transition: $transicion;
+            span {
+                @include media-up(md){
+                    display: none;
+                }
+            }
+        }
+        a:hover {
+            color: $colorHover;
+            border-bottom: 2px solid $colorHover;
+        }
+        
+    }
+    .btn-login {
+        grid-area: 1/11/2/13;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include media-up(xxl){
+            justify-content: end;
+        }
+        @include media-up(xl){
+            grid-area: 1/12/2/13;
+        }
+        @include media-up(lg){
+            justify-content: center;
+        }
+        @include media-up(fold){
+            grid-area: 1/11/2/13;
+        }
+        i{
+            display: none;
+            @include media-up(lg){
+                display: block;
+                font-size: 20px;
+            }
+        }
+        i:hover {
+            color: $colorHover;
+        }
+        a {
+            color: white;
+            background-color: $colorHeader;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: $transicion;
+            @include media-up(xl){
+                padding: 5px 10%;
+                font-size: 10px;
+            }
+            @include media-up(lg){
+                display: none;
+            }
+        }
+        a:hover {
+            background-color: $colorHover;
+        }
+    }
+    .hero-container {
+        grid-area: 2/1/8/-1;
+        background-image: url("../img/fondo.jpg");
+        background-position: center;
+        background-size: cover;
+        @include media-up(fold){
+            grid-area: 3/1/8/-1;
+        }
+    }
+}
+
+.main {
+    // background-color: lavender;
+    .section1 {
+        text-align: center;
+        .article1-perfil {
+            img {
+                width: 200px;
+                border: 2px solid white;
+                border-radius: 50%;
+                margin-top: -100px;
+                @include media-up(sm){
+                    width: 150px;
+                    margin-top: -80px;
+                }
+            }
+        }
+        .article2 {
+            height: 40vh;
+            overflow: hidden;
+            h1 {
+                font-size: 30px;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+            h4{
+                color: $colorH4;
+                font-weight: 200;
+            }
+            p {
+                width: 55%;
+                // text-align: justify;
+                margin: auto;
+                margin-top: 40px;
+                color: $colorText;
+                margin-bottom: 50px;
+            }
+        }
+    }
+    .section2 {
+        .article-section2 {
+            display: grid;
+            grid-template-columns: repeat(12,1fr);
+            .container-title {
+                height: 30vh;
+                grid-column: 1/-1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 30px;
+                background-image: url("../img/fondo6.jpg");
+                background-position: center;
+                background-size: cover;
+                background-attachment: fixed;
+                border-radius: 5px;
+                .section2-title {
+                    background-color: $title;
+                    padding: 10px;
+                    border-radius: 5px;
+                    color: white;
+                }
+            }
+            .exp-laboral {
+                grid-column: 3/11;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid lightgray;
+                .img-laboral {
+                    width: 32%;
+                    img {
+                        width: 100%;
+                        margin: 40px 0;
+                        box-shadow: 0 0 20px 1px rgba(131, 131, 131, 0.3);
+                    }
+                }
+                .descripcion-laboral {
+                    width: 30%;
+                    color: $colorText;
+                    .title-laboral {
+                        font-size: 20px;
+                    }
+                    .subtitle-laboral {
+                        color: $colorText;
+                    }
+                    .fecha-laboral {
+                        color: $colorH4;
+                    }
+                } 
+            }
+        }
+    }
+    .section3 {
+        margin-top: 50px;
+        .article3-section3 {
+            display: grid;
+            grid-template-columns: repeat(12,1fr);
+            // grid-template-rows: repeat(5,1fr);
+            .container-title-section3 {
+                height: 30vh;
+                grid-column: 1/-1;
+                background-image: url("../img/fondo8.jpg");
+                background-position: center;
+                background-size: cover;
+                background-attachment: fixed;
+                font-size: 30px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+                .title-educacion {
+                    background-color: $title;
+                    padding: 10px;
+                    border-radius: 5px;
+                    color: white;
+                }
+            }
+            .educacion {
+                grid-column: 3/11;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid lightgray;
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                .img-educacion {
+                    width: 16%;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .description-educacion {
+                    width: 50%;
+                    .title-educacion{
+                        color: $colorText;
+                    }
+                    .carrera {
+                        color: $colorText;
+                    }
+                    .fecha-carrera {
+                        color: $colorH4;
+                    }
+                }
+            }
+        }
+    }
+    .section4 {
+        margin-top: 50px;
+        .article4-section4 {
+            display: grid;
+            grid-template-columns: repeat(12,1fr);
+            .container-title-section4{
+                height: 30vh;
+                grid-column: 1/-1;
+                background-image: url("../img/fondo9.jpg");
+                background-position: center;
+                background-size: cover;
+                background-attachment: fixed;
+                font-size: 30px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+                .title-skills {
+                    background-color: $title;
+                    padding: 10px;
+                    border-radius: 5px;
+                    color: white;
+                }
+            }
+            .container-skills {
+                grid-column: 3 / 11;
+                display: flex;
+                justify-content: space-between;
+                .container-front {
+                    width: 40%;
+                    box-shadow: 0 0 20px 1px $shadowSkills;
+                    border-radius: 5px;
+                    padding: 10px;
+                    .title-skills-front {
+                        text-align: center;
+                    }
+                    .skills {
+                        margin-bottom: 50px;
+                        .title-skills-cards {
+                            .title-skills {
+                                img {
+                                    width: 45px;
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+                .container-back {
+                    margin:0;
+                    width: 40%;
+                    box-shadow: 0 0 20px 1px $shadowSkills;
+                    border-radius: 5px;
+                    padding: 10px;
+                    .title-skills-back {
+                        text-align: center;
+                    }
+                    .skills {
+                        margin-bottom: 50px;
+                        .title-skills-cards {
+                            .title-skills {
+                                img {
+                                    width: 50px;
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
